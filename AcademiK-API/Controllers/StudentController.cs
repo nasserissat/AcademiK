@@ -1,5 +1,5 @@
-﻿using AcademiK_API.Logic.IServices;
-using Microsoft.AspNetCore.Http;
+﻿using AcademiK_API.DTOs.InputDTOs;
+using AcademiK_API.Logic.IServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AcademiK_API.Controllers
@@ -23,7 +23,7 @@ namespace AcademiK_API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetStudentById(int id)
+        public async Task<ActionResult> GetStudentById(int id)
         {
             try
             {
@@ -34,6 +34,19 @@ namespace AcademiK_API.Controllers
             catch (ArgumentNullException)
             {
                 return NotFound();
+            }
+        }
+        [HttpPost]
+        public async Task<ActionResult> CreateStudent([FromBody] StudentData student)
+        {
+            try
+            {
+                await _studentService.CreateStudent(student);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }

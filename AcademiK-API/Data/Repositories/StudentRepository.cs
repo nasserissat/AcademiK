@@ -1,5 +1,6 @@
 ﻿using AcademiK_API.Data.Context;
 using AcademiK_API.Data.IRepositories;
+using AcademiK_API.DTOs.InputDTOs;
 using AcademiK_API.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,7 +27,9 @@ namespace AcademiK_API.Data.Repositories
 
         public async Task<Student> CreateStudent(Student student)
         {
-            throw new NotImplementedException();
+            _context.Students.Add(student);
+            await _context.SaveChangesAsync();
+            return student;
         }
 
         public async Task<Student> UpdateStudent(Student student)
