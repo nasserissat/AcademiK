@@ -8,7 +8,7 @@ namespace AcademiK_API.Data.IRepositories
     {
         Task<List<Student>> GetAllStudents();
         Task<Student> GetStudentById(int id);
-        Task<Student> CreateStudent(Student student);
+        Task<int> CreateStudent(Student student);
         Task<Student> UpdateStudent(Student student);
         Task DeleteStudent(int id);
     }

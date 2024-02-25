@@ -23,7 +23,13 @@ namespace AcademiK_API.Logic.Services
 
         public async Task<StudentView> GetStudentById(int id)
         {
-            throw new NotImplementedException();
+            var student = await _studentRepository.GetStudentById(id);
+            if (student == null)
+            {
+                throw new InvalidOperationException("Debe ingresar el nombre y el apellido del estudiante");
+            }
+            var studentView = new StudentView(student);
+            return studentView;
         }
 
         public async Task<StudentView> CreateStudent(StudentData student)
@@ -59,7 +65,8 @@ namespace AcademiK_API.Logic.Services
                     
                 };
 
-                var createdStudent = await _studentRepository.CreateStudent(newStudent);
+                var id = await _studentRepository.CreateStudent(newStudent);
+                var createdStudent = await _studentRepository.GetStudentById(id);
                 var student_view = new StudentView(createdStudent);
                 return student_view;
 

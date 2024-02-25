@@ -15,7 +15,7 @@ namespace AcademiK_API.Data.Repositories
         }
         public async Task<List<Student>> GetAllStudents()
         {
-            return await _context.Students.ToListAsync();
+            return await _context.Students.Include(s => s.Course).ToListAsync();
         }
 
         public async Task<Student> GetStudentById(int id)
@@ -25,12 +25,13 @@ namespace AcademiK_API.Data.Repositories
                 .FirstOrDefaultAsync(s => s.Id == id);
         }
 
-        public async Task<Student> CreateStudent(Student student)
+        public async Task<int> CreateStudent(Student student)
         {
-            _context.Students.Add(student);
+            var result = await _context.Students.AddAsync(student);
             await _context.SaveChangesAsync();
-            return student;
+            return result.Entity.Id;
         }
+        
 
         public async Task<Student> UpdateStudent(Student student)
         {
