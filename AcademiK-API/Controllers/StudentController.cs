@@ -1,10 +1,12 @@
 ﻿using AcademiK_API.DTOs.InputDTOs;
 using AcademiK_API.Logic.IServices;
+using AcademiK_API.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace AcademiK_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     [ApiController]
     public class StudentController : ControllerBase
     {
@@ -15,14 +17,14 @@ namespace AcademiK_API.Controllers
             _studentService = studentService;
         }
 
-        [HttpGet]
+        [HttpGet("estudiantes")]
         public async Task<IActionResult> GetAllStudents()
         {
             var students = await _studentService.GetAllStudents();
             return students.Any() ? Ok(students) : NotFound() as IActionResult;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("estudiante/{id}")]
         public async Task<ActionResult> GetStudentById(int id)
         {
             try
@@ -36,13 +38,40 @@ namespace AcademiK_API.Controllers
                 return NotFound();
             }
         }
-        [HttpPost]
-        public async Task<ActionResult> CreateStudent([FromBody] StudentData student)
+        [HttpPost("crear/estudiante")]
+        public async Task<ActionResult> CreateStudent([FromBody] StudentData studentData)
         {
             try
             {
-                await _studentService.CreateStudent(student);
-                return Ok();
+                var createdStudent = await _studentService.CreateStudent(studentData);
+                return CreatedAtAction(nameof(GetStudentById), new { id = createdStudent.Id }, createdStudent);
+            }
+            catch (ValidationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPut("estudiante/{id}")]
+        public async Task<IActionResult> UpdateStudent(int id, [FromBody] StudentData studentData)
+        {
+            try
+            {
+                var updatedStudent = await _studentService.UpdateStudent(id, studentData);
+                return Ok(updatedStudent);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("estudiante/{id}")]
+        public async Task<IActionResult> DeleteStudent(int id)
+        {
+            try
+            {
+                await _studentService.DeleteStudent(id);
+                return NoContent();
             }
             catch (Exception ex)
             {

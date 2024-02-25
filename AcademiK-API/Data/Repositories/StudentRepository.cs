@@ -35,12 +35,16 @@ namespace AcademiK_API.Data.Repositories
 
         public async Task<Student> UpdateStudent(Student student)
         {
-            throw new NotImplementedException();
+            _context.Entry(student).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return student;
         }
 
-        public async Task DeleteStudent(int id)
+        public async Task DeleteStudent(Student student)
         {
-            throw new NotImplementedException();
+            _context.Students.Remove(student);
+            await _context.SaveChangesAsync();
+
         }
     }
 }

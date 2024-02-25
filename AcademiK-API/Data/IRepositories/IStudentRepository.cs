@@ -10,6 +10,6 @@ namespace AcademiK_API.Data.IRepositories
         Task<Student> GetStudentById(int id);
         Task<int> CreateStudent(Student student);
         Task<Student> UpdateStudent(Student student);
-        Task DeleteStudent(int id);
+        Task DeleteStudent(Student student);
     }
 }

@@ -35,24 +35,16 @@ namespace AcademiK_API.Logic.Services
         public async Task<StudentView> CreateStudent(StudentData student)
         {
             if (student.FirstName == null && student.LastName == null)
-            {
                 throw new InvalidOperationException("Debe ingresar el nombre y el apellido del estudiante");
-            }
 
             if (student.Gender == null)
-            {
                 throw new InvalidOperationException("Debe ingresar un genero");
-            }
 
             if(student.Age < 10 || student.Age > 18)
-            {
                 throw new InvalidOperationException("El sistema del colegio solo permite registrar estudiantes entre 10 a 18 años");
-            }
          
             if (student.CourseId == null)
-            {
                 throw new InvalidOperationException("El estudiante debe pertenecer a un curso");
-            }
             try
             {
                 var newStudent = new Student
@@ -79,14 +71,43 @@ namespace AcademiK_API.Logic.Services
             }
         }
 
-        public async Task<StudentView> UpdateStudent(int id, StudentData student)
+        public async Task<StudentView> UpdateStudent(int id, StudentData studentData)
         {
-            throw new NotImplementedException();
+            if (studentData.FirstName == null && studentData.LastName == null)
+                throw new InvalidOperationException("Debe ingresar el nombre y el apellido del estudiante");           
+
+            if (studentData.Gender == null)
+                throw new InvalidOperationException("Debe ingresar un genero");
+            
+            if (studentData.Age < 10 || studentData.Age > 18)
+                throw new InvalidOperationException("El sistema del colegio solo permite registrar estudiantes entre 10 a 18 años");
+
+            var student = await _studentRepository.GetStudentById(id);
+
+            if (student == null)
+                throw new InvalidOperationException("El estudiante no existe ");
+
+            student.FirstName = studentData.FirstName;
+            student.LastName = studentData.LastName;
+            student.Age = studentData.Age;
+            student.Gender = studentData.Gender;
+            student.CourseId = studentData.CourseId;
+
+            await _studentRepository.UpdateStudent(student);
+            var studentView = new StudentView(student);
+
+            return studentView;
         }
 
         public async Task DeleteStudent(int id)
         {
-            throw new NotImplementedException();
+            var student = await _studentRepository.GetStudentById(id);
+
+            if (student == null)
+                throw new InvalidOperationException("El estudiante no existe ");
+
+           await _studentRepository.DeleteStudent(student);
+
         }
     }
 }
