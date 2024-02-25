@@ -16,5 +16,8 @@ namespace AcademiK_API.Models
         public int CourseId { get; set; }
 
         public virtual Course Course { get; set; }
+        public virtual ICollection<Grade> Grades { get;}
+        public virtual ICollection<Attendance> Attendances { get; }
+
     }
 }

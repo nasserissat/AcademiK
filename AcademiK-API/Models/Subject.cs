@@ -14,5 +14,7 @@ namespace AcademiK_API.Models
 
         public virtual Teacher Teacher { get; set; }    
         public virtual Course Course { get; set; }
+        public virtual ICollection<Grade> Grades { get; set; }
+        public virtual ICollection<Attendance> Attendances { get; set; }
     }
 }
