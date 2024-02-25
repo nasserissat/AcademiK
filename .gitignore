@@ -1,0 +1,27 @@
+# Ignorar directorios de configuraciones de Visual Studio
+.vs/
+
+# Ignorar directorios de compilación y artefactos
+bin/
+obj/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.nupkg
+
+# Ignorar archivos de paquetes descargados
+packages/
+
+# Ignorar directorio de herramientas
+tools/
+
+# Ignorar archivos de logs y bases de datos locales
+*.log
+*.log.*
+*.sqlitedb
+*.sqlite
+
+# Ignorar archivos de configuraciones de IDE adicionales
+*.launchsettings
+
