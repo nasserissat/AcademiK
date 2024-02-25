@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\" />
     <Folder Include="Data\Context\" />
     <Folder Include="Data\IRepositories\" />
     <Folder Include="Data\Repositories\" />
