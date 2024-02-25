@@ -17,13 +17,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Data\IRepositories\" />
-    <Folder Include="Data\Repositories\" />
-    <Folder Include="DTOs\InputDTOs\" />
-    <Folder Include="DTOs\OutputDTOs\" />
-    <Folder Include="Logic\" />
-  </ItemGroup>
-
 </Project>

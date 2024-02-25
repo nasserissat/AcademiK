@@ -1,4 +1,8 @@
 using AcademiK_API.Data.Context;
+using AcademiK_API.Data.IRepositories;
+using AcademiK_API.Data.Repositories;
+using AcademiK_API.Logic.IServices;
+using AcademiK_API.Logic.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +15,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AcademiKContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AcademiKConnection")));
+
+builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 
 var app = builder.Build();
 
