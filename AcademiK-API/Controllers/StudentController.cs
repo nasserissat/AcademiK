@@ -17,14 +17,14 @@ namespace AcademiK_API.Controllers
             _studentService = studentService;
         }
 
-        [HttpGet("estudiantes")]
+        [HttpGet("students")]
         public async Task<IActionResult> GetAllStudents()
         {
             var students = await _studentService.GetAllStudents();
             return students.Any() ? Ok(students) : NotFound() as IActionResult;
         }
 
-        [HttpGet("estudiante/{id}")]
+        [HttpGet("student/{id}")]
         public async Task<ActionResult> GetStudentById(int id)
         {
             try
@@ -38,7 +38,7 @@ namespace AcademiK_API.Controllers
                 return NotFound();
             }
         }
-        [HttpPost("crear/estudiante")]
+        [HttpPost("add/student")]
         public async Task<ActionResult> CreateStudent([FromBody] StudentData studentData)
         {
             try
@@ -51,7 +51,7 @@ namespace AcademiK_API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPut("estudiante/{id}")]
+        [HttpPut("student/{id}")]
         public async Task<IActionResult> UpdateStudent(int id, [FromBody] StudentData studentData)
         {
             try
@@ -65,7 +65,7 @@ namespace AcademiK_API.Controllers
             }
         }
 
-        [HttpDelete("estudiante/{id}")]
+        [HttpDelete("student/{id}")]
         public async Task<IActionResult> DeleteStudent(int id)
         {
             try

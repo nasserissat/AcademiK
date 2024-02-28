@@ -4,6 +4,7 @@ namespace AcademiK_API.DTOs.InputDTOs
 {
     public class StudentData
     {
+        public string? Picture { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int Age { get; set; }
