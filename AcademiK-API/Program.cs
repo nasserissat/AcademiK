@@ -4,6 +4,7 @@ using AcademiK_API.Data.Repositories;
 using AcademiK_API.Logic.IServices;
 using AcademiK_API.Logic.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +47,14 @@ using (var scope = app.Services.CreateScope())
 app.UseHttpsRedirection();
 
 app.UseCors("AllowWebApp");
+
+app.UseStaticFiles(); // Para wwwroot
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "Resources")),
+    RequestPath = "/Resources"
+});
 
 
 app.UseAuthorization();

@@ -132,5 +132,17 @@ namespace AcademiK_API.Logic.Services
            await _studentRepository.DeleteStudent(student);
 
         }
+        public string GetStudentImagePath(string filename)
+        {
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Resources", filename);
+            if (File.Exists(filePath))
+            {
+                return filePath;
+            }
+            else
+            {
+                throw new FileNotFoundException("La imagen no fue encontrada.");
+            }
+        }
     }
 }

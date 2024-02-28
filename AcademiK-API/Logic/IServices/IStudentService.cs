@@ -10,7 +10,7 @@ namespace AcademiK_API.Logic.IServices
         Task<StudentView> CreateStudent(StudentData student);
         Task<StudentView> UpdateStudent(int id, StudentData student);
         Task DeleteStudent(int id);
-
+        string GetStudentImagePath(string filename);
 
     }
 }

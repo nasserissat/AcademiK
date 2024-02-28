@@ -78,5 +78,19 @@ namespace AcademiK_API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("students/image/{filename}")]
+        public IActionResult GetStudentImage(string filename)
+        {
+            try
+            {
+                var imagePath = _studentService.GetStudentImagePath(filename);
+                var imageFileStream = System.IO.File.OpenRead(imagePath);
+                return File(imageFileStream, "image/jpeg");
+            }
+            catch (FileNotFoundException)
+            {
+                return NotFound();
+            }
+        }
     }
 }
