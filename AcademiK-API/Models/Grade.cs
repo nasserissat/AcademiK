@@ -12,8 +12,12 @@ namespace AcademiK_API.Models
         public string LetterGrade { get; set; }
         public int StudentId { get; set; }
         public int SubjectId { get; set; }
+        public int CourseId { get; set; }
 
         public virtual Student Student { get; set; }
         public virtual Subject Subject { get; set; }
+        public virtual Course Course { get; set; }
+
     }
+
 }

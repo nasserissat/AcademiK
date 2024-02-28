@@ -9,9 +9,13 @@ namespace AcademiK_API.Data.Repositories
     public class StudentRepository : IStudentRepository
     {
         private readonly AcademiKContext _context;
-        public StudentRepository(AcademiKContext context)
+        private readonly ILogger _logger;
+
+        public StudentRepository(AcademiKContext context, ILogger<StudentRepository> logger)
         {
             _context = context;
+            _logger = logger;
+
         }
         public async Task<List<Student>> GetAllStudents()
         {
@@ -31,7 +35,6 @@ namespace AcademiK_API.Data.Repositories
             await _context.SaveChangesAsync();
             return result.Entity.Id;
         }
-        
 
         public async Task<Student> UpdateStudent(Student student)
         {

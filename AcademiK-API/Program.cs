@@ -10,11 +10,20 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowWebApp", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<AcademiKContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AcademiKConnection")));
+builder.Services.AddDbContext<AcademiKContext>(options => options.UseMySql("name=AcademiKConnection", new MySqlServerVersion(new Version(8, 0, 32))));
 
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
@@ -35,6 +44,9 @@ using (var scope = app.Services.CreateScope())
     }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowWebApp");
+
 
 app.UseAuthorization();
 

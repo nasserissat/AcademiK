@@ -14,6 +14,7 @@ namespace AcademiK_API.Models
         public GenderEnum Gender { get; set; }
         public int Age {  get; set; }
         public int CourseId { get; set; }
+        public string Picture { get; set; }
 
         public virtual Course Course { get; set; }
         public virtual ICollection<Grade> Grades { get;}

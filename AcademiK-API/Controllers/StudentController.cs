@@ -38,7 +38,7 @@ namespace AcademiK_API.Controllers
                 return NotFound();
             }
         }
-        [HttpPost("add/student")]
+        [HttpPost("student/add")]
         public async Task<ActionResult> CreateStudent([FromBody] StudentData studentData)
         {
             try
