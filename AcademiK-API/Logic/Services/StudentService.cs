@@ -53,21 +53,23 @@ namespace AcademiK_API.Logic.Services
 
             // Procesar img del usuario
             string filePath = string.Empty;
-
-            try
+            if (student.Picture != null)
             {
-                string base64Image = student.Picture;
-                if (base64Image.Contains(","))
+                try
                 {
-                    base64Image = base64Image.Split(',')[1];
-                }
+                    string base64Image = student.Picture;
+                    if (base64Image.Contains(","))
+                    {
+                        base64Image = base64Image.Split(',')[1];
+                    }
 
-                byte[] imageBytes = Convert.FromBase64String(base64Image);
-                filePath = Utilities.ReusableMehtods.SaveImage(imageBytes, student.FirstName, student.LastName);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Se produjo un error al procesar la imagen del estudiante: " + ex.Message);
+                    byte[] imageBytes = Convert.FromBase64String(base64Image);
+                    filePath = Utilities.ReusableMehtods.SaveImage(imageBytes, student.FirstName, student.LastName);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Se produjo un error al procesar la imagen del estudiante: " + ex.Message);
+                }
             }
 
             // Agregar estudiante
