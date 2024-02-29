@@ -17,10 +17,13 @@ namespace AcademiK_API.Data.Repositories
             _logger = logger;
 
         }
-        public async Task<List<Student>> GetAllStudents()
-        {
-            return await _context.Students.Include(s => s.Course).ToListAsync();
-        }
+        public async Task<List<Student>> GetAllStudents(StudentSearchData? filter) =>
+            await _context.Students
+            .Include(s => s.Course)
+            .Where(s => filter.CourseId == 0 || s.CourseId == filter.CourseId)
+            .Where(s => filter.GenderId == 0 || (int)s.Gender == filter.GenderId)
+            .Where(s => filter.Age == 0 || s.Age == filter.Age)
+            .ToListAsync();
 
         public async Task<Student> GetStudentById(int id)
         {

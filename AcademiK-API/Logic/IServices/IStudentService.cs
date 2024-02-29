@@ -5,7 +5,7 @@ namespace AcademiK_API.Logic.IServices
 {
     public interface IStudentService
     {
-        Task<List<StudentView>> GetAllStudents();
+        Task<List<StudentView>> GetAllStudents(StudentSearchData? filter);
         Task<StudentView> GetStudentById(int id);
         Task<StudentView> CreateStudent(StudentData student);
         Task<StudentView> UpdateStudent(int id, StudentData student);

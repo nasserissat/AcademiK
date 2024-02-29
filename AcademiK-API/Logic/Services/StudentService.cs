@@ -18,9 +18,9 @@ namespace AcademiK_API.Logic.Services
             _env = env;
 
         }
-        public async Task<List<StudentView>> GetAllStudents()
+        public async Task<List<StudentView>> GetAllStudents(StudentSearchData? filter)
         {
-            var students  = await _studentRepository.GetAllStudents();
+            var students  = await _studentRepository.GetAllStudents(filter);
             var studentViews = students.Select(student => new StudentView(student)).ToList();
 
             return studentViews;

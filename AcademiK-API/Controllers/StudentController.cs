@@ -18,12 +18,12 @@ namespace AcademiK_API.Controllers
         }
 
         [HttpGet("students")]
-        public async Task<IActionResult> GetAllStudents()
+        public async Task<IActionResult> GetAllStudents([FromQuery] StudentSearchData? filter)
         {
-            var students = await _studentService.GetAllStudents();
+            var students = await _studentService.GetAllStudents(filter);
             return students.Any() ? Ok(students) : NotFound() as IActionResult;
         }
-
+        
         [HttpGet("student/{id}")]
         public async Task<ActionResult> GetStudentById(int id)
         {
