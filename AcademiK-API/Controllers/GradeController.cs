@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AcademiK_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     public class GradeController : Controller
     {
         private readonly IGradeService _gradeService;

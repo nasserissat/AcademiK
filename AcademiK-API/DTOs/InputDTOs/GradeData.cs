@@ -8,7 +8,7 @@ public class GradeData
 }
 public class StudentGradeData
 {
-    public int StudentId { get; set; }
+    public int Id { get; set; }
     public decimal Score { get; set; }
 }
 
