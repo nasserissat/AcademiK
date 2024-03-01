@@ -8,9 +8,9 @@ namespace AcademiK_API.DTOs.InputDTOs
 		public DateTime Date{ get; set; }
 		public int CourseId { get; set; }
 		public int SubjectId { get; set; }
-		public List<AttendandeList> Attendances { get; set; }
+		public List<AttendandeInput> Attendances { get; set; }
 	}
-	public class AttendandeList
+	public class AttendandeInput
     {
 		public int StudentId { get; set; }
 		public AttendanceStatuses Status { get; set; }

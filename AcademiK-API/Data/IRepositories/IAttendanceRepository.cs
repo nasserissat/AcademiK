@@ -9,6 +9,6 @@ namespace AcademiK_API.Data.IRepositories
 		Task<List<Attendance>> GetAllAtendances(AttendanceSearchData? filter);
 		Task<Attendance> GetAttendanceById(int id);
 		Task<List<Attendance>> TakeAttendances(List<Attendance> attendances);
-		Task<Attendance> UpdateStudentAttendance(Attendance attenance);
+		Task<Attendance> UpdateStudentAttendance(Attendance attendance);
 	}
 }
