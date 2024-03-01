@@ -70,8 +70,9 @@ namespace AcademiK_API.Logic.Services
                     grades.Add(grade);
                 }
                 List<GradeView> grades_view = new List<GradeView>();
-                var created_grades = await _gradeRepository.SaveGrades(grades);
-                foreach(var grade in created_grades)
+                await _gradeRepository.SaveGrades(grades);
+                var all_grades = await _gradeRepository.GetAllGrades(null);
+                foreach(var grade in all_grades)
                 {
                     var grade_view = new GradeView(grade);
                     grades_view.Add(grade_view);
