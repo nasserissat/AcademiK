@@ -1,6 +1,4 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace AcademiK_API.DTOs.InputDTOs;
+﻿namespace AcademiK_API.DTOs.InputDTOs;
 
 public class GradeData
 {
