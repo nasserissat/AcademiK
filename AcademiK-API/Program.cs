@@ -27,7 +27,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AcademiKContext>(options => options.UseMySql("name=AcademiKConnection", new MySqlServerVersion(new Version(8, 0, 32))));
 
 builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<IGradeService, GradeService>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<IGradeRepository, GradeRepository>();
 
 var app = builder.Build();
 
