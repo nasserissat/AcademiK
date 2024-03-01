@@ -3,6 +3,7 @@ using AcademiK_API.Data.Context;
 using AcademiK_API.Data.IRepositories;
 using AcademiK_API.DTOs.InputDTOs;
 using AcademiK_API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AcademiK_API.Data.Repositories
 {
@@ -14,13 +15,13 @@ namespace AcademiK_API.Data.Repositories
             _context = context;
         }
 
-        public async Task<List<Grade>> GetAllGrades(GradeSearchData data) =>
+        public async Task<List<Grade>> GetAllGrades(GradeSearchData? data) =>
             await _context.Grades
             .Include(g => g.Course)
             .Include(g => g.Student)
             .Include(g => g.Subject)
-            .where(g => data.CourseId == null || data.CourseId == g.Course.Id)
-            .where(g => data.SubjectId == null || data.SubjectId == g.Subject.Id)
+            .Where(g => data.CourseId == 0 || data.CourseId == g.Course.Id)
+            .Where(g => data.SubjectId == 0 || data.SubjectId == g.Subject.Id)
             .ToListAsync();
 
         public async Task<List<Grade>> SaveGrades(List<Grade> grades)

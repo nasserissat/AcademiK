@@ -16,9 +16,17 @@ namespace AcademiK_API.Logic.Services
             _gradeRepository = gradeRepository;
         }
 
-        public Task<List<GradeView>> GetAllGrades(GradeSearchData? data)
+        public async Task<List<GradeView>> GetAllGrades(GradeSearchData? filter)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var grades = await _gradeRepository.GetAllGrades(filter);
+                return grades.Select(g => new GradeView(g)).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Se produjo un error al recuperar las calificaciones: " + ex.Message);
+            }
         }
 
         public async Task<List<GradeView>> RateStudents(GradeData data)
