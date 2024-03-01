@@ -8,7 +8,6 @@ using AcademiK_API.Logic.IServices;
 using AcademiK_API.Logic.Services;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace AcademiK_API.Controllers
 {
