@@ -5,6 +5,7 @@ namespace AcademiK_API.DTOs.OutputDTOs
 {
     public class GradeView
     {
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Item Course { get; set; }
@@ -15,6 +16,7 @@ namespace AcademiK_API.DTOs.OutputDTOs
 
         public GradeView(Grade grade)
         {
+            Id = grade.Id;
             FirstName = grade.Student.FirstName;
             LastName = grade.Student.LastName;
             Course = new Item { Id = grade.CourseId, Description = grade.Course.Nivel };

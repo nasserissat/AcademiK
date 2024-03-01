@@ -50,6 +50,19 @@ namespace AcademiK_API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpDelete("grade/{id}")]
+        public async Task<IActionResult> DeleteGrade(int id)
+        {
+            try
+            {
+                await _gradeService.DeleteGrade(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
 

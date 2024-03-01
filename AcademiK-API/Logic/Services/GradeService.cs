@@ -1,5 +1,6 @@
 ﻿using System;
 using AcademiK_API.Data.IRepositories;
+using AcademiK_API.Data.Repositories;
 using AcademiK_API.DTOs.InputDTOs;
 using AcademiK_API.DTOs.OutputDTOs;
 using AcademiK_API.Logic.IServices;
@@ -27,6 +28,16 @@ namespace AcademiK_API.Logic.Services
             {
                 throw new Exception("Se produjo un error al recuperar las calificaciones: " + ex.Message);
             }
+        }
+        public async Task<GradeView> GetGradeById(int id)
+        {
+            var grade = await _gradeRepository.GetGradeById(id);
+            if (grade == null)
+            {
+                throw new InvalidOperationException("No se encontró la calificación");
+            }
+            var gradeView = new GradeView(grade);
+            return gradeView;
         }
 
         public async Task<List<GradeView>> RateStudents(GradeData data)
@@ -97,6 +108,16 @@ namespace AcademiK_API.Logic.Services
             {
                 return "";
             }
+        }
+        public async Task DeleteGrade(int id)
+        {
+            var grade = await _gradeRepository.GetGradeById(id);
+
+            if (grade == null)
+                throw new InvalidOperationException("La calificación no existe ");
+
+            await _gradeRepository.DeleteGrade(grade);
+
         }
     }
 }

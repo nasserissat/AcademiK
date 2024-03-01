@@ -31,7 +31,7 @@ namespace AcademiK_API.Logic.Services
             var student = await _studentRepository.GetStudentById(id);
             if (student == null)
             {
-                throw new InvalidOperationException("Debe ingresar el nombre y el apellido del estudiante");
+                throw new InvalidOperationException("No se encontró el estudiante");
             }
             var studentView = new StudentView(student);
             return studentView;
