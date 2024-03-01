@@ -4,6 +4,7 @@ using AcademiK_API.Data.IRepositories;
 using AcademiK_API.DTOs.InputDTOs;
 using AcademiK_API.Models;
 using Microsoft.EntityFrameworkCore;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AcademiK_API.Data.Repositories
 {
@@ -15,25 +16,14 @@ namespace AcademiK_API.Data.Repositories
             _context = context;
         }
 
-        public async Task<List<Grade>> GetAllGrades(GradeSearchData? data)
-        {
-            var query = _context.Grades
+        public async Task<List<Grade>> GetAllGrades(GradeSearchData? data) =>
+            await _context.Grades
                 .Include(g => g.Course)
                 .Include(g => g.Student)
-                .Include(g => g.Subject);
-
-            if (data?.CourseId != null && data.CourseId.Value != 0)
-            {
-                query = (Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<Grade, Subject>)query.Where(g => g.CourseId == data.CourseId.Value);
-            }
-
-            if (data?.SubjectId != null && data.SubjectId.Value != 0)
-            {
-                query = (Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<Grade, Subject>)query.Where(g => g.SubjectId == data.SubjectId.Value);
-            }
-
-            return await query.ToListAsync();
-        }
+                .Include(g => g.Subject)
+                .Where(g => data.CourseId == 0 || data.CourseId == g.Course.Id)
+                .Where(g => data.SubjectId == 0 || data.SubjectId == g.Subject.Id)
+                .ToListAsync();
 
 
 
