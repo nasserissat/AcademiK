@@ -25,7 +25,7 @@ namespace AcademiK_API.Controllers
         public async Task<IActionResult> GetAllGrades([FromQuery] GradeSearchData? filter)
         {
             var grades = await _gradeService.GetAllGrades(filter);
-            return grades.Any() ? Ok(grades) : NotFound() as IActionResult;
+            return Ok(grades);
         }
 
        

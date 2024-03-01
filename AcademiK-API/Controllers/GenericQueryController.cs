@@ -23,13 +23,13 @@ namespace AcademiK_API.Controllers
         public async Task<IActionResult> GetAllCourses()
         {
             var courses = await _genericQueryService.GetAllCourses();
-            return courses.Any() ? Ok(courses) : NotFound() as IActionResult;
+            return Ok(courses);
         }
         [HttpGet("subjects")]
         public async Task<IActionResult> GetAllSubjects()
         {
             var subjects = await _genericQueryService.GetAllSubjects();
-            return subjects.Any() ? Ok(subjects) : NotFound() as IActionResult;
+            return Ok(subjects);
         }
 
 
