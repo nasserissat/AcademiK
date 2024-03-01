@@ -8,7 +8,6 @@ using AcademiK_API.Logic.IServices;
 using AcademiK_API.Logic.Services;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace AcademiK_API.Controllers
 {
     [Route("api")]

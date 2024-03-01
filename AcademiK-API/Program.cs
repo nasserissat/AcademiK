@@ -29,10 +29,14 @@ builder.Services.AddDbContext<AcademiKContext>(options => options.UseMySql("name
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IGradeService, GradeService>();
 builder.Services.AddScoped<IGenericQueryService, GenericQueryService>();
+builder.Services.AddScoped<IAttendanceService, AttendanceService>();
+
 
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<IGradeRepository, GradeRepository>();
 builder.Services.AddScoped<IGenericQueryRepository, GenericQueryRepository>();
+builder.Services.AddScoped<IAttendanceRepository, AttendanceRepository>();
+
 
 
 var app = builder.Build();

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using AcademiK_API.Enums;
 
 namespace AcademiK_API.Models
 {
@@ -9,7 +10,7 @@ namespace AcademiK_API.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public DateTime Date { get; set; }
-        public bool Attended { get; set; }
+        public AttendanceStatuses Status { get; set; }
         public int StudentId { get; set; }
         public int SubjectId { get; set; }    
         public int CourseId { get; set; }
