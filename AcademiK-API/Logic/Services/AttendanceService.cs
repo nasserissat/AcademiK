@@ -15,22 +15,22 @@ namespace AcademiK_API.Logic.Services
             _attendanceRepository = attendanceRepository;
 		}
 
-        Task<List<AttendanceView>> GetAllAttendances(AttendanceSearchData filter)
+        public Task<List<AttendanceView>> GetAllAttendances(AttendanceSearchData? filter)
         {
             throw new NotImplementedException();
         }
 
-        Task<AttendanceView> GetAttendanceById(int id)
+        public Task<AttendanceView> GetAttendanceById(int id)
         {
             throw new NotImplementedException();
         }
 
-        Task<List<AttendanceView>> TakeAttendance(AttendanceListData data)
+        public Task<List<AttendanceView>> TakeAttendance(AttendanceListData data)
         {
             throw new NotImplementedException();
         }
 
-        Task<AttendanceView> UpdateStudentAttendance(AttendanceData data)
+        public Task<AttendanceView> UpdateStudentAttendance(AttendanceData data)
         {
             throw new NotImplementedException();
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AcademiK_API.Logic.IServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AcademiK_API.Controllers
@@ -15,11 +16,11 @@ namespace AcademiK_API.Controllers
             _attendanceService = attendanceService;
         }
 
-        [HttpGet("attendances")]
-        public Task<IActionResult> GetAllAttendances()
-        {
+        //[HttpGet("attendances")]
+        //public Task<IActionResult> GetAllAttendances()
+        //{
 
-        }
+        //}
         
     }
 }
