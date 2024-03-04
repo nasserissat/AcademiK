@@ -30,7 +30,7 @@ namespace AcademiK_API.Logic.Services
             throw new NotImplementedException();
         }
 
-        public Task<AttendanceView> UpdateStudentAttendance(AttendanceData data)
+        public Task<AttendanceView> UpdateStudentAttendance(int id, AttendanceData data)
         {
             throw new NotImplementedException();
         }

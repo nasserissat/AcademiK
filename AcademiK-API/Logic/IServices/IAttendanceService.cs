@@ -9,7 +9,7 @@ namespace AcademiK_API.Logic.IServices
 		Task<List<AttendanceView>> GetAllAttendances(AttendanceSearchData? filter);
 		Task<AttendanceView> GetAttendanceById(int id);
 		Task<List<AttendanceView>> TakeAttendance(AttendanceListData data);
-		Task<AttendanceView> UpdateStudentAttendance(AttendanceData data);
+		Task<AttendanceView> UpdateStudentAttendance(int id, AttendanceData data);
 	}
 }
 
